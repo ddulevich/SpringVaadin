@@ -64,8 +64,8 @@ public class HotelsView extends VerticalLayout implements View {
         
         content.setWidth("100%");
         content.setHeight(500,Unit.PIXELS);
-        content.setExpandRatio(hotelGrid,0.7f);
-        content.setExpandRatio(form,0.3f);
+        content.setExpandRatio(hotelGrid,0.65f);
+        content.setExpandRatio(form,0.35f);
         content.setComponentAlignment(form,Alignment.MIDDLE_CENTER);
 
         form.setWidth("80%");

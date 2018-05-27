@@ -88,7 +88,6 @@ public class HotelEditForm extends FormLayout {
         url.setDescription("The url is required");
         url.setWidth(100, Unit.PERCENTAGE);
 
-
         description.setWidth(100, Unit.PERCENTAGE);
 
         addComponents(name,address,rating,operatesFrom,paymentField,category,description,url,buttons);

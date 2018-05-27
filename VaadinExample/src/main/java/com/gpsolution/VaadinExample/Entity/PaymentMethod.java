@@ -12,13 +12,25 @@ public class PaymentMethod implements Serializable {
 	@Column(name = "PAYMENT_METHOD")
 	private String paymentMethod;
 
+	@Column(name = "PREPAYMENT")
+	private Integer prepayment;
+	
 	public PaymentMethod() {
 		super();
 	}
-
+	
 	public PaymentMethod(PaymentMethod value) {
 		super();
 		this.paymentMethod = value.getPaymentMethod();
+		this.prepayment = value.getPrepayment();
+	}
+	
+	public Integer getPrepayment() {
+		return prepayment;
+	}
+
+	public void setPrepayment(Integer prepayment) {
+		this.prepayment = prepayment;
 	}
 
 	public void setPaymentMethod(String paymentMethod) {
@@ -31,6 +43,10 @@ public class PaymentMethod implements Serializable {
 	
 	@Override
 	public String toString() {
-		return paymentMethod;
+		if (paymentMethod.equals("Credit Card")) {
+			return paymentMethod + " (" + prepayment + ")";
+		} else {
+			return paymentMethod;
+		}
 	}
 }
