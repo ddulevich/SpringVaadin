@@ -10,7 +10,7 @@ import javax.persistence.Embeddable;
 public class PaymentMethod implements Serializable {
 
 	@Column(name = "PAYMENT_METHOD")
-	private String paymentMethod = " ";
+	private String paymentMethod;
 
 	public PaymentMethod() {
 		super();

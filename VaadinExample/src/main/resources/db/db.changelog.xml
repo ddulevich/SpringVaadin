@@ -122,4 +122,10 @@
 		</addColumn>
 	</changeSet>
 	
+	<changeSet id="12" author="dds">
+		<addColumn tableName="HOTEL">
+			<column name="PREPAYMENT" defaultValue="0" type="INT"></column>
+		</addColumn>
+	</changeSet>
+	
 </databaseChangeLog>

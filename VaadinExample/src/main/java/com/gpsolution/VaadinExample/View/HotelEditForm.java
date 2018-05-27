@@ -10,6 +10,7 @@ import com.gpsolution.VaadinExample.View.converters.RatingConverter;
 import com.gpsolution.VaadinExample.View.validators.AddressValidator;
 import com.gpsolution.VaadinExample.View.validators.CategoryValidator;
 import com.gpsolution.VaadinExample.View.validators.DateValidator;
+import com.gpsolution.VaadinExample.View.validators.PaymentValidator;
 import com.gpsolution.VaadinExample.View.validators.RatingValidator;
 import com.vaadin.data.*;
 import com.vaadin.ui.*;
@@ -30,13 +31,13 @@ public class HotelEditForm extends FormLayout {
 
     public void setHotel(Hotel hotel) {
         this.hotel = hotel;
-        binder.readBean(this.hotel);
-        setVisible(true);
         if (hotel.getPaymentMethod() == null) {
 			paymentField.doSetValue(new PaymentMethod());
 		} else {
 			paymentField.doSetValue(hotel.getPaymentMethod());
 		}
+        binder.readBean(this.hotel);
+        setVisible(true);
     }
 
     private Binder<Hotel> binder = new Binder<>(Hotel.class);
@@ -47,7 +48,7 @@ public class HotelEditForm extends FormLayout {
     private static NativeSelect<Category> category = new NativeSelect<>("Category");
     private TextField url = new TextField("URL");
     private TextArea description = new TextArea("Description");
-    private PaymentMethodField paymentField = new PaymentMethodField("Pay");
+    private PaymentMethodField paymentField = new PaymentMethodField("Payment method");
 
     private Button save = new Button("Save");
     private Button close = new Button("Close");
@@ -79,6 +80,8 @@ public class HotelEditForm extends FormLayout {
         operatesFrom.setDescription("The date must be in the past.");
         operatesFrom.setWidth(100, Unit.PERCENTAGE);
 
+        paymentField.setWidth(100, Unit.PERCENTAGE);
+        
         category.setDescription("The category is required");
         category.setWidth(100, Unit.PERCENTAGE);
 
@@ -108,6 +111,8 @@ public class HotelEditForm extends FormLayout {
                 .bind(Hotel::getOperatesFrom, Hotel::setOperatesFrom);
 
         binder.forField(paymentField)
+        		.asRequired()
+        		.withValidator(new PaymentValidator())
         		.bind(Hotel::getPaymentMethod, Hotel::setPaymentMethod);
         
         binder.forField(category).asRequired("The category is required")
